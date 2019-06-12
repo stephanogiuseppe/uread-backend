@@ -1,0 +1,43 @@
+{
+  "env": {
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "standard",
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "quotes": 1,
+    "semi": "error",
+    "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
+    "arrow-parens": ["error", "always"],
+    "no-else-return": ["error", { "allowElseIf": false }],
+    "padded-blocks": ["error", "never"],
+    "array-bracket-spacing": ["error", "never"],
+    "array-bracket-newline": ["error"],
+    "space-in-parens": ["error", "never"],
+    "no-extra-parens": [
+      "error",
+      "all",
+      { "enforceForArrowConditionals": false }
+    ],
+    "space-before-function-paren": ["error", "never"],
+    "comma-dangle": ["error", "never", "always-multiline"],
+    "newline-per-chained-call": ["error", { "ignoreChainWithDepth": 2 }],
+    "indent": [
+      "error",
+      2,
+      {
+        "VariableDeclarator": 2,
+        "FunctionDeclaration": { "body": 1, "parameters": 2 }
+      }
+    ],
+    "new-cap": ["error", { "properties": false }]
+  }
+}
