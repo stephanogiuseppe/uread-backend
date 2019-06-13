@@ -8,11 +8,12 @@ const UserSchema = new mongoose.Schema({
   password: { type: String, required: true, select: false },
   passwordResetToken: { type: String, select: false },
   passwordResetExpires: { type: Date, select: false },
-  favoritePosts: [
+  favoritePosts: [{ type: String }],
+  subscriptions: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Post',
-      default: 0
+      ref: 'Column',
+      require: false
     }
   ],
   createdAt: { type: Date, default: Date.now }

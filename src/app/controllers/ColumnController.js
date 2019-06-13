@@ -2,8 +2,12 @@ const Column = require('../models/Column')
 
 module.exports = {
   async get(req, res) {
-    const column = await Column.find().sort('-createdAt')
-      .populate(["user", "subscriptions"])
+    const column = await Column.find().populate(["user", "subscriptions"])
+    return res.json(column)
+  },
+  async subscriptions(req, res) {
+    const column = await Column.find().populate(["user", "subscriptions"])
+    column = column.subscriptions.filter(subscriptionsId === req.userId)
     return res.json(column)
   },
   async search(req, res) {
