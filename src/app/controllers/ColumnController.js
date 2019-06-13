@@ -3,10 +3,12 @@ const Column = require('../models/Column')
 module.exports = {
   async get(req, res) {
     const column = await Column.find().sort('-createdAt')
+      .populate(["user", "subscriptions"])
     return res.json(column)
   },
   async search(req, res) {
-    const column = await Column.find()
+    const column =
+      await Column.find().populate(["user", "subscriptions"])
     const columnFiltered = column.filter(column =>
       column.title.toLowerCase().includes(req.params.search.toLowerCase())
     )
