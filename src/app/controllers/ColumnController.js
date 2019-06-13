@@ -5,6 +5,13 @@ module.exports = {
     const column = await Column.find().sort('-createdAt')
     return res.json(column)
   },
+  async search(req, res) {
+    const column = await Column.find()
+    const columnFiltered = column.filter(column =>
+      column.title.toLowerCase().includes(req.params.search.toLowerCase())
+    )
+    return res.json(columnFiltered)
+  },
   async create(req, res) {
     const { title, description } = req.body
     const user = req.userId
@@ -18,10 +25,11 @@ module.exports = {
     return res.json(column)
   },
   async update(req, res) {
-    const { title, description } = req.body
+    const { title, description, writers } = req.body
     const column = await Column.findByIdAndUpdate(req.params.id, {
       title,
-      description
+      description,
+      writers
     }, { new: true })
 
     return res.json(column)
