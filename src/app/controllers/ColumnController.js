@@ -28,12 +28,16 @@ module.exports = {
   },
   async subscribe(req, res) {
     const column = await Column.findById(req.params.id)
+    column.subscriptions.push(req.userId)
 
-    const id = '' // my user id
-    column.subscriptions.find(users => users._id === id)
+    await column.save()
+    return res.json(column)
+  },
+  async unsubscribe(req, res) {
+    let column = await Column.findById(req.params.id)
+    column.subscriptions = column.subscriptions.filter(sub => sub != req.userId)
 
-    await column.update()
-    req.io.emit('subscribeColumn', column)
+    await column.save()
     return res.json(column)
   }
 }

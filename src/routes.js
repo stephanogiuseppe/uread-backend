@@ -23,6 +23,7 @@ router.get('/column', ColumnController.get)
 router.post('/column', ColumnController.create)
 router.put('/column/:id', ColumnController.update)
 router.put('/column/:id/subscribe', ColumnController.subscribe)
+router.put('/column/:id/unsubscribe', ColumnController.unsubscribe)
 
 /* POSTS ROUTES */
 router.get('/posts', PostController.get)
