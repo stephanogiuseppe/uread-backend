@@ -16,7 +16,7 @@
     "quotes": 1,
     "semi": "error",
     "brace-style": ["error", "1tbs", { "allowSingleLine": true }],
-    "arrow-parens": ["error", "always"],
+    "arrow-parens": ["always"],
     "space-in-parens": ["error", "never"],
     "space-before-function-paren": ["error", "never"],
     "no-extra-parens": [
