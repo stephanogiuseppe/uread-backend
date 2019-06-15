@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const ColumnSchema = new mongoose.Schema(
   {
@@ -27,4 +27,4 @@ const ColumnSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-module.exports = mongoose.model('Column', ColumnSchema)
+export default mongoose.model('Column', ColumnSchema)

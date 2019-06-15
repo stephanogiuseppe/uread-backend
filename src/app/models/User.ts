@@ -1,6 +1,6 @@
-const bcrypt = require('bcryptjs')
+import bcrypt from 'bcryptjs'
 
-const mongoose = require('../../database')
+import mongoose from '../../database'
 
 const UserSchema = new mongoose.Schema({
   name: { type: String, require: true },
@@ -19,10 +19,14 @@ const UserSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 })
 
-UserSchema.pre('save', async function(next) {
+interface IUser extends mongoose.Document {
+  password: string;
+}
+
+UserSchema.pre<IUser>('save', async function(next) {
   const hash = await bcrypt.hash(this.password, 10)
   this.password = hash
   next()
 })
 
-module.exports = mongoose.model('User', UserSchema)
+export default mongoose.model('User', UserSchema)
