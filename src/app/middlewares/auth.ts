@@ -1,8 +1,9 @@
-const jwt = require('jsonwebtoken')
+import jwt from 'jsonwebtoken'
+import express from 'express'
 
-const authConfig = require('../../config/auth')
+import authConfig from '../../config/auth.json'
 
-module.exports = (req, res, next) => {
+export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const authHeader = req.headers.authorization
 
   if (!authHeader) {
@@ -11,7 +12,7 @@ module.exports = (req, res, next) => {
 
   const parts = authHeader.split(' ')
 
-  if (!parts.length === 2) {
+  if (parts.length !== 2) {
     return res.status(401).send({ error: 'Token error' })
   }
 
@@ -21,13 +22,14 @@ module.exports = (req, res, next) => {
     return res.status(401).send({ error: 'Token malformatted' })
   }
 
-  jwt.verify(token, authConfig.appToken, (err, decoded) => {
+  jwt.verify(token, authConfig.appToken, (err: any, decoded: any) => {
     if (err) {
       return res.status(401).send({ error: 'Invalid token' })
     }
 
-    req.userId = decoded.id
+    req.headers.userId = decoded.id
 
     return next()
   })
+  return
 }

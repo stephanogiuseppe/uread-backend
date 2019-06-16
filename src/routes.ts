@@ -1,15 +1,17 @@
-const express = require('express')
-const multer = require('multer')
+import express from 'express'
+import multer from 'multer'
 
-const uploadConfig = require('./config/upload')
-const authMiddleware = require('./app/middlewares/auth')
-const AuthController = require('./app/controllers/AuthController')
-const ColumnController = require('./app/controllers/ColumnController')
-const PostController = require('./app/controllers/PostController')
-const UserController = require('./app/controllers/UserController')
+// import uploadConfig from './config/upload'
+import authMiddleware from './app/middlewares/auth'
+import AuthController from './app/controllers/AuthController'
+import ColumnController from './app/controllers/ColumnController'
+import PostController from './app/controllers/PostController'
+import UserController from './app/controllers/UserController'
 
-const router = new express.Router()
-const upload = multer(uploadConfig)
+const router = express.Router()
+// FIXME
+// const upload = multer(uploadConfig)
+const upload = multer()
 
 /* AUTH ROUTES */
 router.post('/auth/register', AuthController.register)
@@ -44,4 +46,4 @@ router.delete('/posts/:id/comment/:idComment', PostController.removeComment)
 
 router.get('/posts/search/:search', PostController.search)
 
-module.exports = router
+export default router
