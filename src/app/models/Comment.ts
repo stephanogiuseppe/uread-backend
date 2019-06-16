@@ -1,4 +1,4 @@
-import mongoose from '../../database'
+import mongoose from '../../data-source/mongo'
 
 const CommentSchema = new mongoose.Schema(
   {
