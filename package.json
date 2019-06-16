@@ -7,7 +7,7 @@
   "author": "Stéphano Giuseppe <stephano.grp@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/index.ts"
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec ts-node src/index.ts"
   },
   "dependencies": {
     "bcrypt": "^3.0.6",
