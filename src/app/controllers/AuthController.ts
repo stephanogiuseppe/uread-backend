@@ -1,14 +1,13 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import crypto from 'crypto'
-import mailer from '../../modules/mailer'
+import mailer from '../../data-source/mailer'
 import express from 'express'
-
+import { getEnv, SECRET_KEY } from '../../config/getEnv'
 import User from '../models/User'
-import authConfig from '../../config/auth.json'
 
 function generateToken(params = {}) {
-  return jwt.sign(params, authConfig.appToken, {
+  return jwt.sign(params, getEnv(SECRET_KEY), {
     expiresIn: 86400
   })
 }
