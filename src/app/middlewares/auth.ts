@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken'
 import express from 'express'
-
-import authConfig from '../../config/auth.json'
+import { getEnv, SECRET_KEY } from '../../config/getEnv'
 
 export default (req: express.Request, res: express.Response, next: express.NextFunction) => {
   const authHeader = req.headers.authorization
@@ -22,7 +21,7 @@ export default (req: express.Request, res: express.Response, next: express.NextF
     return res.status(401).send({ error: 'Token malformatted' })
   }
 
-  jwt.verify(token, authConfig.appToken, (err: any, decoded: any) => {
+  jwt.verify(token, getEnv(SECRET_KEY), (err: any, decoded: any) => {
     if (err) {
       return res.status(401).send({ error: 'Invalid token' })
     }

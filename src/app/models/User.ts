@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs'
 
-import mongoose from '../../database'
+import mongoose from '../../data-source/mongo'
 
 const UserSchema = new mongoose.Schema({
   name: { type: String, require: true },
