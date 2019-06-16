@@ -1,7 +1,7 @@
 import express from 'express'
 import multer from 'multer'
 
-// import uploadConfig from './config/upload'
+import uploadConfig from './config/upload'
 import authMiddleware from './app/middlewares/auth'
 import AuthController from './app/controllers/AuthController'
 import ColumnController from './app/controllers/ColumnController'
@@ -9,9 +9,7 @@ import PostController from './app/controllers/PostController'
 import UserController from './app/controllers/UserController'
 
 const router = express.Router()
-// FIXME
-// const upload = multer(uploadConfig)
-const upload = multer()
+const upload = multer({ storage: uploadConfig })
 
 /* AUTH ROUTES */
 router.post('/auth/register', AuthController.register)
