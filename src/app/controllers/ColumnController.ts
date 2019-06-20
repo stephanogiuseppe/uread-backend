@@ -8,8 +8,11 @@ const ColumnController = {
   },
   async subscriptions(req: express.Request, res: express.Response) {
     let column: any = await Column.find().populate(["user", "subscriptions"])
-    column = column.subscriptions.filter((subscriptionsId: any) => subscriptionsId === req.headers.userId)
-    return res.json(column)
+    if (column.subscriptions) {
+      column = column.subscriptions.filter((subscriptionsId: any) => subscriptionsId === req.headers.userId)
+      return res.json(column)
+    }
+    return res.json([])
   },
   async search(req: express.Request, res: express.Response) {
     const column: any =
