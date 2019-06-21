@@ -6,7 +6,7 @@ import express from 'express'
 import { getEnv, SECRET_KEY } from '../../config/getEnv'
 import User from '../models/User'
 
-function generateToken(params = {}) {
+const generateToken = (params = {}) => {
   return jwt.sign(params, getEnv(SECRET_KEY), {
     expiresIn: 86400
   })
@@ -123,4 +123,4 @@ const resetPassword = async (req: express.Request, res: express.Response) => {
   return
 }
 
-export default { register, authenticate, forgotPassword, resetPassword }
+export default { register, authenticate, forgotPassword, resetPassword, generateToken }

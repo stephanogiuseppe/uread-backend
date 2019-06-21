@@ -1,5 +1,6 @@
 import express from 'express'
 import User from '../models/User'
+import AuthController from './AuthController'
 import bcrypt from 'bcrypt'
 
 const UserController = {
@@ -14,7 +15,10 @@ const UserController = {
     }, { new: true })
 
     user.password = undefined
-    res.send(user)
+    return res.send({
+      user,
+      token: AuthController.generateToken({ id: user.id })
+    })
   }
 }
 
